@@ -2,7 +2,7 @@ import react,{useState} from 'react';
 import { StyleSheet,
    Text, View,
    TextInput, Button, 
-  placeholder, ScrollView }
+  placeholder, ScrollView, FlatList }
    from 'react-native';
 
   // useState permet de générer un state dans nos variables locales ou une sorte d'Event
@@ -10,8 +10,11 @@ import { StyleSheet,
   // valider l'element : evenement onpresse 
   // varr myproduct en array pour sotcker les infos 
 export default function App() {
-  const [product, setProduct]= useState("");
+  // const [product, setProduct]= useState("");
+  // flatlist on passe a des obj 
+  const [product, setProduct]= useState();
   const [myProduct, setMyProducts]= useState([]);
+  
   const inputHandler= (val)=>{
     // fonction flechée 
     setProduct(val)
@@ -23,15 +26,22 @@ export default function App() {
     console.log(product); 
     // générer un autre tableau de stockage de data product 
     // setMyProducts([...setMyProducts, product])
-    setMyProducts(CurrentMyProducts=>[...CurrentMyProducts, product])
+    //  setMyProducts(CurrentMyProducts=>[...CurrentMyProducts, product])
+    // flt
+   // setMyProducts(CurrentMyProducts=>[product, ...CurrentMyProducts])
+   const idsrting = Date.now().toString(); 
+    setMyProducts(CurrentMyProducts=>[{key:idsrting, name:product}, ...CurrentMyProducts])
    // console.log(myProduct);
     // on supprime alors l'array préalablement vide avant ajout de pproduit dans array products 
     setProduct(''); 
     // on doit ensuite injecter cette valeur dans my product et si plusieurs dans Aray Product 
     // on peut aussi appliquer le scrollview dans l'ensemble de l'application ou sur uniquement sur 
     // ou sur la liste des produits qui seront afdfichés 
-    //  le but est à titre perso 
-    
+    //  le but est à titre perso;;;;;; 
+    // on peut utiliser la FlatList en temes de performances de l'application
+    // et aussi pour empecher en cas de chargement lent un plantage 
+
+
     
   }
   return (
@@ -48,8 +58,17 @@ export default function App() {
         onPress={submitHandler}
         />
       </View>
-      <ScrollView>
-      <View style={styles.items}>
+      {/* ajout de flatlist au lieu de scrollview  */}
+      <FlatList
+      data= {myProduct}
+      renderItem={({item})=>   <Text  style={styles.element}>
+      {item.name}
+    </Text>}
+      />
+
+   
+      {/* <ScrollView> */}
+      {/* <View style={styles.items}>
           {
             myProduct.map((product, index)=>
           <Text key={index} style={styles.element}>
@@ -58,8 +77,9 @@ export default function App() {
           
           )
           }
-      </View>
-      </ScrollView>
+      </View> */}
+    
+      {/* </ScrollView> */}
     </View>
   );
 }
@@ -69,10 +89,12 @@ const styles = StyleSheet.create({
    padding:40, 
    paddingTop: 60, 
    backgroundColor: "", 
+   
+
   },
   inputContainer:{
     flexDirection:"row", 
-
+    marginBottom:9, 
 
 
   }, 
