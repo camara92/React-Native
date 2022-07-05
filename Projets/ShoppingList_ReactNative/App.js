@@ -4,7 +4,7 @@ import { StyleSheet,
    TextInput, Button, 
   placeholder, ScrollView, FlatList }
    from 'react-native';
-
+import Products from './components/Products';
   // useState permet de générer un state dans nos variables locales ou une sorte d'Event
   //onchagetext
   // valider l'element : evenement onpresse 
@@ -61,9 +61,8 @@ export default function App() {
       {/* ajout de flatlist au lieu de scrollview  */}
       <FlatList
       data= {myProduct}
-      renderItem={({item})=>   <Text  style={styles.element}>
-      {item.name}
-    </Text>}
+      renderItem={({item})=> <Products name={ item.name} />  
+    }
       />
 
    
