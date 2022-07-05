@@ -4,45 +4,26 @@ import { StyleSheet,
    TextInput, Button, 
   placeholder, ScrollView, FlatList }
    from 'react-native';
-import Products from './components/Products';
-  // useState permet de générer un state dans nos variables locales ou une sorte d'Event
-  //onchagetext
-  // valider l'element : evenement onpresse 
-  // varr myproduct en array pour sotcker les infos 
 export default function App() {
-  // const [product, setProduct]= useState("");
-  // flatlist on passe a des obj 
+
   const [product, setProduct]= useState();
   const [myProduct, setMyProducts]= useState([]);
   
   const inputHandler= (val)=>{
-    // fonction flechée 
+    // fonctig,ngon fleche 
     setProduct(val)
 
   }
-  // event for submit 
+
   const submitHandler=()=>{
     // on affiche le produit qui a été saisie ou tapé dans ce cas 
     console.log(product); 
-    // générer un autre tableau de stockage de data product 
-    // setMyProducts([...setMyProducts, product])
-    //  setMyProducts(CurrentMyProducts=>[...CurrentMyProducts, product])
-    // flt
+ 
+    // setMyProducts([...setMyProducts, product]) 
    // setMyProducts(CurrentMyProducts=>[product, ...CurrentMyProducts])
    const idsrting = Date.now().toString(); 
     setMyProducts(CurrentMyProducts=>[{key:idsrting, name:product}, ...CurrentMyProducts])
-   // console.log(myProduct);
-    // on supprime alors l'array préalablement vide avant ajout de pproduit dans array products 
-    setProduct(''); 
-    // on doit ensuite injecter cette valeur dans my product et si plusieurs dans Aray Product 
-    // on peut aussi appliquer le scrollview dans l'ensemble de l'application ou sur uniquement sur 
-    // ou sur la liste des produits qui seront afdfichés 
-    //  le but est à titre perso;;;;;; 
-    // on peut utiliser la FlatList en temes de performances de l'application
-    // et aussi pour empecher en cas de chargement lent un plantage 
-
-
-    
+    setProduct('');   
   }
   return (
     <View style={styles.container}>
@@ -59,26 +40,15 @@ export default function App() {
         />
       </View>
       {/* ajout de flatlist au lieu de scrollview  */}
+      
       <FlatList
       data= {myProduct}
-      renderItem={({item})=> <Products name={ item.name} />  
+      renderItem={({item})=>   <Text  style={styles.element}>
+      {item.name}
+    </Text>
     }
       />
 
-   
-      {/* <ScrollView> */}
-      {/* <View style={styles.items}>
-          {
-            myProduct.map((product, index)=>
-          <Text key={index} style={styles.element}>
-            {product}
-          </Text>
-          
-          )
-          }
-      </View> */}
-    
-      {/* </ScrollView> */}
     </View>
   );
 }
