@@ -23,11 +23,11 @@ const completeTask =(index)=>{
      {/* today task  */}
      <View style={styles.taskWrapper}>
       <Text style={styles.sectionTitle}>Today's task </Text>
-      {/* image on our app  */}
+      {/* image on our app : un logo ferait mieux  */}
     
       <View style={styles.items}>
-      {/* this is where the tasks will  */}
-      {/* import du fichier Task  */}
+      {/* this is where the tasks will : affichage des task ou les phrases ecrités dans l'input  */}
+      {/* import du fichier Task depuis le dossier component  */}
       {
         taskItems.map((item, index)=>{
          return  (
@@ -46,7 +46,7 @@ const completeTask =(index)=>{
      behavior={Platform.OS ==="ios" ?"padding": "height"} 
      style={styles.writeTaskWrapper}
      >
-    <TextInput style={styles.input} placeholder={'Write a Task'} 
+    <TextInput style={styles.input} placeholder={'Saisir votre mot : Daouda '} 
     value={task} onChangeText={text=> setTask(text)}></TextInput>
     <TouchableOpacity onPress={ ()=>handleTask()}>
       <View style={styles.addWrapper}>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#E8EAED" , 
+    backgroundColor: "violet" , 
 
   },
   taskWrapper:{
@@ -74,7 +75,9 @@ const styles = StyleSheet.create({
   sectionTitle:{
     fontSize: 50, 
     textAlign: "center", 
-    color: "red"
+    color: "white", 
+    fontSize:80, 
+    fontWeight:"bold", 
   }, 
   items:{
 marginTop:30
@@ -87,16 +90,16 @@ marginTop:30
     alignItems:"center"
 
   }, 
-  addText: {
-
-  }, 
+  
   input:{
     paddingVertical: 15, 
     width:250, 
     paddingHorizontal: 15,
     borderColor: "#c0c0c0", 
-    borderWidth:1, 
+    borderWidth:5, 
     borderRadius:60, 
+    backgroundColor:"white", 
+    textAlign: "center"
 
 
   }, 
@@ -112,6 +115,9 @@ marginTop:30
 
   }, 
   addText:{
-
+    textAlign: "center", 
+    fontWeight: "bold" ,
+    fontSize: 50, 
+    
   }
 });
