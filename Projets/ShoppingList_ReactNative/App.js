@@ -4,48 +4,45 @@ import { StyleSheet,
    TextInput, Button, 
   placeholder, ScrollView, FlatList }
    from 'react-native';
+   import Products from './components/Products';
+   import AddProduct from './components/AddProduct';
+
 export default function App() {
 
-  const [product, setProduct]= useState();
+  // const [product, setProduct]= useState('');
+  // on enleve le state product et vers addproduct 
   const [myProduct, setMyProducts]= useState([]);
   
-  const inputHandler= (val)=>{
-    // fonctig,ngon fleche 
-    setProduct(val)
+  // const inputHandler= (val)=>{
+  //   // fonctig,ngon fleche 
+  //   setProduct(val)
 
-  }
+  // }
 
-  const submitHandler=()=>{
+  const submitHandler=(productt)=>{
     // on affiche le produit qui a été saisie ou tapé dans ce cas 
-    console.log(product); 
+    console.log(productt); 
  
     // setMyProducts([...setMyProducts, product]) 
    // setMyProducts(CurrentMyProducts=>[product, ...CurrentMyProducts])
    const idsrting = Date.now().toString(); 
-    setMyProducts(CurrentMyProducts=>[{key:idsrting, name:product}, ...CurrentMyProducts])
-    setProduct('');   
+    setMyProducts(CurrentMyProducts=>[{key:idsrting, name:productt}, ...CurrentMyProducts])
+   setProduct('');   
   }
+  
   return (
     <View style={styles.container}>
-     
-      <View style={styles.inputContainer}>
-        <TextInput
-        style={styles.TextInput}
-        placeholder="Nouveau produit"
-        onChangeText={inputHandler}
-        value={product}
-        />
-        <Button title="Valider"
-        onPress={submitHandler}
-        />
-      </View>
+     <View style={styles.header}>
+      <Text style={styles.textheader}> Accueil </Text>
+     </View>
+    {/* on enlevé la view et on le met dans addproduct */}
       {/* ajout de flatlist au lieu de scrollview  */}
-      
+      {/* affichage de la vue AddProduct  */}
+      {/* submithandler est mis sur addproduct pour faire l'interpollation via AddProduct */}
+      <AddProduct submitHandler ={submitHandler} />
       <FlatList
       data= {myProduct}
-      renderItem={({item})=>   <Text  style={styles.element}>
-      {item.name}
-    </Text>
+      renderItem={({item})=> <Products name={item.name } />
     }
       />
 
@@ -57,26 +54,39 @@ const styles = StyleSheet.create({
   container: {
    padding:40, 
    paddingTop: 60, 
-   backgroundColor: "", 
+   backgroundColor: "red", 
    
 
   },
-  inputContainer:{
-    flexDirection:"row", 
-    marginBottom:9, 
+  header:{
+    backgroundColor: "blue",
+    
+    marginVertical: 15
+    
+
+  },
+  textheader:{
+    color: "white", 
+    fontWeight:"bold", fontSize: 25, 
+
+  }
+  // inputContainer:{
+  //   flexDirection:"row", 
+  //   marginBottom:9, 
 
 
-  }, 
-  TextInput:{
-    borderColor: "grey", 
-    borderWidth: 1, 
-    padding: 5, 
-    paddingLeft: 9, 
-    fontSize: 18, 
-    flexGrow:1, 
+  // }, 
+  // TextInput:{
+  //   borderColor: "grey", 
+  //   borderWidth: 1, 
+  //   padding: 5, 
+  //   paddingLeft: 9, 
+  //   fontSize: 18, 
+  //   flexGrow:1, 
 
 
-  }, 
+  // }, 
+  ,
   items:{
     // backgroundColor: "red" 
     marginTop:10 
