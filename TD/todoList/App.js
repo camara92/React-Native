@@ -1,20 +1,22 @@
-///import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, KeyboardAvoidingView, placeholder } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, placeholder, Keyboard } from 'react-native';
 import { TextInput, TouchableOpacity, Platform} from 'react-native';
 import react, {useState} from 'react';
 import Task from './component/Task';
+import { ScrollView } from 'react-native';
 export default function App() {
 
   const  [task, setTask]= useState(); 
   const  [taskItems, setTaskItems]= useState([]); 
-  const handleTask =()=>{
+
+  const handleAddTask =()=>{
+   // Keyboard.dismiss(); 
     setTaskItems([...taskItems, task])
     setTask(null); 
 
     console.log(task)
   }
 const completeTask =(index)=>{
-  let itemCopy = ([...taskItems, task])
+  let itemCopy = ([...taskItems])
   itemCopy.splice(index, 1); 
   setTaskItems(itemCopy)
 }
@@ -25,13 +27,14 @@ const completeTask =(index)=>{
       <Text style={styles.sectionTitle}>Today's task </Text>
       {/* image on our app : un logo ferait mieux  */}
     
+    <ScrollView>
       <View style={styles.items}>
       {/* this is where the tasks will : affichage des task ou les phrases ecrités dans l'input  */}
       {/* import du fichier Task depuis le dossier component  */}
       {
         taskItems.map((item, index)=>{
          return  (
-         <TouchableOpacity key={index} onPress={ ()=> completeTask()}>
+         <TouchableOpacity key={index} onPress={ ()=> completeTask(index)}>
           {/* <Task key={index} text={item} /> */}
           <Task text={item} />
          </TouchableOpacity>)
@@ -40,22 +43,25 @@ const completeTask =(index)=>{
       {/* <Task  text={'Task 1'}/>
       <Task  text={'Task 2'}/> */}
       </View>
+      </ScrollView>
      </View>
      {/* KeybopardAvoidingView  */}
      <KeyboardAvoidingView 
      behavior={Platform.OS ==="ios" ?"padding": "height"} 
      style={styles.writeTaskWrapper}
      >
-    <TextInput style={styles.input} placeholder={'Saisir votre mot : Daouda '} 
-    value={task} onChangeText={text=> setTask(text)}></TextInput>
-    <TouchableOpacity onPress={ ()=>handleTask()}>
+    <TextInput style={styles.input} placeholder={'Saisir votre mot : Daouda '} value={task}
+     onChangeText={text=> setTask(text)}  />
+
+    <TouchableOpacity onPress={ ()=>handleAddTask()}>
       <View style={styles.addWrapper}>
         <Text style={styles.addText}>+</Text>
       </View>
-    </TouchableOpacity>
-     </KeyboardAvoidingView>
+        </TouchableOpacity>
+     
+      </KeyboardAvoidingView>
 
-    </View>
+</View>
   );
 }
 
