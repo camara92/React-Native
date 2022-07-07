@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, Button } from 'react-native';
-
+import moment from "moment";
 const Home = ({ navigation }) => {
+    // date à l'affiche 
+    const [currentDate, SetCurrentDate]= useState(''); 
+    useEffect(()=>{
+      //const date = Date()//la date
+      const today = Date();
+    const date = moment(today).format("DD/MM/YYYY");
+      SetCurrentDate(
+        date
+      )
+      //console.log("daouda "+date)
+     }, [])
 
     // console.log(props); 
     const hanlePress = ()=>{
@@ -21,7 +32,7 @@ const Home = ({ navigation }) => {
     // fin de code office de bureau progrmini 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Home page</Text>
+            <Text style={styles.text}>Date du jour : { currentDate } </Text>
             <Text style={styles.messageWelcole}>Bienvenue chez votre Office : plus de flexibilité et d'organisation </Text>
            <View style={styles.boutonnav}>
            <Text>🕸️</Text>

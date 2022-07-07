@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView, placeholder, Keyboard, FlatList } from 'react-native';
 import { TextInput, TouchableOpacity, Platform} from 'react-native';
 import react, {useState, useEffect} from 'react';
-
+import moment from "moment";
 import { ScrollView } from 'react-native';
 import Task from './Task';
 import { SafeAreaView } from 'react-native';
@@ -26,18 +26,11 @@ export default function App() {
     // fin de navigation for office 
     const [currentDate, SetCurrentDate]= useState(''); 
     useEffect(()=>{
-      var date = Date()//la date
-      // var month = new Date().getMonth()+ 1 //le mois 
-      // var year = new Date.getFullYear()
-      // var hours = new Date.getHour()
-      // var min = new Date.getMinutes()
-      // var sec = new Date.getSeconds()
-      // var datecomplet = new Date(); 
+      //const date = Date()//la date
+      const today = Date();
+    const date = moment(today).format("MMMM D, YYYY");
       SetCurrentDate(
-        //date+ '/'+ month+ '/'+ year+ ''+ hours+':'+ min+':'+sec
         date
-        
-    
       )
       //console.log("daouda "+date)
      }, [])
@@ -57,21 +50,7 @@ export default function App() {
         {
           id: "7", name: "Salle de reunion" 
         },
-        {
-          id: "8", name: "Salle de bain" 
-        },
-        {
-            id: "9", name: "Salle de musculation" 
-          },
-          {
-            id: "10", name: "One for Me" 
-          },
-          {
-            id: "11", name: "Growth MindSet Room" 
-          },
-          {
-            id: "12", name: "Repos" 
-          },
+        
          
         
       ]

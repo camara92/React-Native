@@ -7,24 +7,7 @@ import react, {useState, useEffect} from 'react';
 
 //   fin 
 const Task= (props)=>{
-    const [currentDate, SetCurrentDate]= useState(''); 
-useEffect(()=>{
-  var date = Date()//la date
-  // var month = new Date().getMonth()+ 1 //le mois 
-  // var year = new Date.getFullYear()
-  // var hours = new Date.getHour()
-  // var min = new Date.getMinutes()
-  // var sec = new Date.getSeconds()
-  // var datecomplet = new Date(); 
-  SetCurrentDate(
-    //date+ '/'+ month+ '/'+ year+ ''+ hours+':'+ min+':'+sec
-    date
 
-  )
-  //console.log("daouda "+date)
-  
-  }, 
-  [])
     return (
         
             <View style={styles.item}>
