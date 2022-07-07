@@ -22,12 +22,16 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Home page</Text>
-            <Button style={styles.boutonnav} title="Portefolio" 
+            <Text style={styles.messageWelcole}>Bienvenue chez votre Office : plus de flexibilité et d'organisation </Text>
+           <View style={styles.boutonnav}>
+           <Text>🕸️</Text>
+            <Button  title="Portefolio" 
             onPress={hanlePress} />
             {/* bouton de navigation pour la réservation  */}
-            <Text></Text>
+            <Text>🕸️</Text>
             <Button style={styles.boutonnav} title="Office" 
             onPress={hanlePressOffice} />
+           </View>
         </View>
     );
 }
@@ -47,8 +51,13 @@ const styles = StyleSheet.create({
         fontWeight:"bold"
     }, 
     boutonnav:{
-        color : "red" , 
-        backgroundColor: "red"
+        
+        backgroundColor: "lightblue", 
+        textAlign:"center"
+    }, 
+    messageWelcole: {
+        textAlign:"center", 
+        marginTop: 40
     }
    
 })
