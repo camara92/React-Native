@@ -118,12 +118,13 @@ export default function App() {
 const styles = StyleSheet.create({
     wrapper:{
      padding: 20, 
-     backgroundColor: "orange"
+     backgroundColor: "lightblue"
    
     }, 
     viewlist:{
      marginTop: 30, 
-     backgroundColor: "purple", padding: 19, 
+     backgroundColor: "grey", 
+     padding: 19, 
     
     }
     , 
