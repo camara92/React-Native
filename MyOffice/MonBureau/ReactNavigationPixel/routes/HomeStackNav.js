@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import Home from '../SCREENS/home';
 import Portefolio from '../SCREENS/portefolio';
 import Photo from '../SCREENS/photo';
+import Office from '../Office/Office';
 // importer les ecrans 
 //  const screens ={
 //     Home:Home, 
@@ -19,6 +20,9 @@ const screens ={
     }, 
     Photo: {
         screen:Photo
+    }, 
+    Office: {
+        screen:Office
     }
 
  }
